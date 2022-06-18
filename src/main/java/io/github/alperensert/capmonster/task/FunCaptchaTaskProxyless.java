@@ -1,4 +1,4 @@
-package capmonster.task;
+package io.github.alperensert.capmonster.task;
 
 public class FunCaptchaTaskProxyless extends Task{
     public String type = "FunCaptchaTaskProxyless";

@@ -1,9 +1,4 @@
-package capmonster;
-
-import capmonster.task.NoCaptchaTaskProxyLess;
-import com.formdev.flatlaf.FlatDarkLaf;
-import eu.darkbot.captcha.CaptchaSolver;
-import java.net.URL;
+package io.github.alperensert.capmonster;
 
 public class maintest {
     public static void main(String[] args){

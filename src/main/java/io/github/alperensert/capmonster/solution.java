@@ -1,4 +1,4 @@
-package capmonster;
+package io.github.alperensert.capmonster;
 
 public class solution {
     String text; //imageToText

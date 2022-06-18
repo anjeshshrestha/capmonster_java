@@ -1,4 +1,4 @@
-package capmonster;
+package io.github.alperensert.capmonster;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package capmonster;
+package io.github.alperensert.capmonster;
 
-import capmonster.task.Task;
+import io.github.alperensert.capmonster.task.Task;
 import com.google.gson.Gson;
 
 public class createTaskAPI {

@@ -1,4 +1,4 @@
-package capmonster;
+package io.github.alperensert.capmonster;
 
 import com.google.gson.Gson;
 

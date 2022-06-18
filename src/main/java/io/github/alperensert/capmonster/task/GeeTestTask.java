@@ -1,4 +1,4 @@
-package capmonster.task;
+package io.github.alperensert.capmonster.task;
 
 public class GeeTestTask extends GeeTestTaskProxyless{
     public String type = "GeeTestTask";

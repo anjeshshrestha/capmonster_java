@@ -1,9 +1,9 @@
-package capmonster;
+package io.github.alperensert.capmonster;
 
-import capmonster.task.Task;
-import capmonster.createTaskAPI.createTaskResponse;
-import capmonster.getBalanceAPI.getBalanceResponse;
-import capmonster.getTaskResultAPI.getTaskResultResponse;
+import io.github.alperensert.capmonster.task.Task;
+import io.github.alperensert.capmonster.createTaskAPI.createTaskResponse;
+import io.github.alperensert.capmonster.getBalanceAPI.getBalanceResponse;
+import io.github.alperensert.capmonster.getTaskResultAPI.getTaskResultResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
