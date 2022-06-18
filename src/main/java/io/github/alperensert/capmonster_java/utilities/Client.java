@@ -56,10 +56,10 @@ public abstract class Client {
      * @return account balance
      * @since 1.2
      */
-    public int getBalance() {
+    public double getBalance() {
         JSONObject data = new JSONObject();
         data.put("clientKey", CLIENT_KEY);
-        return (int) makeRequest("getBalance", data).get("balance");
+        return (double) makeRequest("getBalance", data).get("balance");
     }
 
     /**
