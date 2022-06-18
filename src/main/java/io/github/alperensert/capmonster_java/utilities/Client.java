@@ -163,7 +163,8 @@ public abstract class Client {
             method = taskResultUrl;
         } else if (Objects.equals(method, "createTask")) {
             method = createTaskUrl;
-            data.put("softId", 51);
+            // data.put("softId", 51);
+            //TODO: get softid
         }
         try {
             response = requestHandler(hostUrl + method, data);
