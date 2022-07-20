@@ -41,7 +41,7 @@ public class Cookies {
     public Cookies(JsonObject cookies) {
         String strCookies = "";
         for (String key : cookies.keySet()) {
-            String value = cookies.get(key).getAsString();
+            String value = cookies.get(key).toString();
             strCookies = strCookies.concat(key + "=" + value + ";");
         }
         this.cookies = strCookies;

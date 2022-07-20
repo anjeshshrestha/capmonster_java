@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 class HCaptchaTaskTest extends BaseTaskTest {
-//    private final HCaptchaTask hCaptchaTask = new HCaptchaTask(System.getenv("CAPMONSTER_API_KEY"));
-    private final HCaptchaTask hCaptchaTask = new HCaptchaTask("6d52cf1e80b57c2b91221874f3d6c773");
+    private final HCaptchaTask hCaptchaTask = new HCaptchaTask(System.getenv("CAPMONSTER_API_KEY"));
+
     @Test
     void createTask() {
         HCaptchaTask.TaskBuilder taskBuilder = new HCaptchaTask.TaskBuilder(

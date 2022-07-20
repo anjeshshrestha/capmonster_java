@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 class RecaptchaV2TaskTest extends BaseTaskTest {
-//    private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task(System.getenv("CAPMONSTER_API_KEY"));
-private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task("6d52cf1e80b57c2b91221874f3d6c773");
+    private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task(System.getenv("CAPMONSTER_API_KEY"));
 
     @Test
     void createTask() {

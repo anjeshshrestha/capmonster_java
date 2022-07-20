@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 class FunCaptchaTaskTest extends BaseTaskTest {
-//    private final FunCaptchaTask funCaptchaTask = new FunCaptchaTask(System.getenv("CAPMONSTER_API_KEY"));
-    private final FunCaptchaTask funCaptchaTask = new FunCaptchaTask("6d52cf1e80b57c2b91221874f3d6c773");
+    private final FunCaptchaTask funCaptchaTask = new FunCaptchaTask(System.getenv("CAPMONSTER_API_KEY"));
 
     @Test
     void createTask() {

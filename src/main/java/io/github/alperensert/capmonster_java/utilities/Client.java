@@ -127,7 +127,7 @@ public abstract class Client {
             return;
         }
         if (responseJson.get("errorId").getAsInt() != 0) {
-            throw new CapmonsterException(responseJson.get("errorCode").getAsString(), responseJson.get("errorDescription").getAsString());
+            throw new CapmonsterException(responseJson.get("errorCode").toString(), responseJson.get("errorDescription").toString());
         } else {
             throw new CapmonsterException("[ERROR CODE: HTTP_ERROR]", "Sometimes can be happen if capmonster servers there is too much intensity");
         }
@@ -147,7 +147,7 @@ public abstract class Client {
         } else if (Objects.equals(status, "ready")) {
             return true;
         } else {
-            throw new CapmonsterException(response.get("errorCode").getAsString(), response.get("errorDescription").getAsString());
+            throw new CapmonsterException(response.get("errorCode").toString(), response.get("errorDescription").toString());
         }
     }
 
@@ -199,7 +199,6 @@ public abstract class Client {
             byte[] input = data.toString().getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
         }
-
         try(BufferedReader br = new BufferedReader(
                 new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
             StringBuilder response = new StringBuilder();

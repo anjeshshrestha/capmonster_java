@@ -120,7 +120,7 @@ public class RequestBuilder {
      */
     public RequestBuilder addProxy(Proxy proxy) {
         if (proxy == null) {
-            TASK.addProperty("type", TASK.get("type").toString() + "Proxyless");
+            TASK.addProperty("type", TASK.get("type").getAsString()+ "Proxyless");
             return this;
         }
         if (proxy.type != null && proxy.address != null && proxy.port != 0) {
