@@ -1,6 +1,6 @@
 package io.github.alperensert.capmonster_java.utilities;
 
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 import java.io.Serializable;
 import java.util.List;
 
@@ -38,10 +38,10 @@ public class Cookies {
      * @param cookies Cookies
      * @since 1.2
      */
-    public Cookies(JSONObject cookies) {
+    public Cookies(JsonObject cookies) {
         String strCookies = "";
         for (String key : cookies.keySet()) {
-            String value = (String) cookies.get(key);
+            String value = cookies.get(key).getAsString();
             strCookies = strCookies.concat(key + "=" + value + ";");
         }
         this.cookies = strCookies;

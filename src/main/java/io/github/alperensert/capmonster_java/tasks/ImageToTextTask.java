@@ -1,8 +1,8 @@
 package io.github.alperensert.capmonster_java.tasks;
 
+import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.utilities.Client;
 import io.github.alperensert.capmonster_java.utilities.RequestBuilder;
-import org.json.JSONObject;
 
 /**
  * Solve Image captchas
@@ -31,8 +31,8 @@ public class ImageToTextTask extends Client {
                 .addTask("Case", taskBuilder._case)
                 .addTask("numeric", taskBuilder.numeric)
                 .addTask("math", taskBuilder.math);
-        JSONObject t = makeRequest("createTask", request.build());
-        return t.getInt("taskId");
+        JsonObject t = makeRequest("createTask", request.build());
+        return t.get("taskId").getAsInt();
     }
 
     /**

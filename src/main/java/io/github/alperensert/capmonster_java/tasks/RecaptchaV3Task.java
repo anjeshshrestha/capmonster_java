@@ -1,8 +1,8 @@
 package io.github.alperensert.capmonster_java.tasks;
 
+import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.utilities.Client;
 import io.github.alperensert.capmonster_java.utilities.RequestBuilder;
-import org.json.JSONObject;
 
 /**
  * This class contains everything for Google ReCaptcha3 solving task.
@@ -33,8 +33,8 @@ public class RecaptchaV3Task extends Client {
                 .addNoCache(taskBuilder.cache)
                 .addTask("minScore", taskBuilder.minimumScore)
                 .addTask("pageAction", taskBuilder.pageAction);
-        JSONObject t = makeRequest("createTask", request.build());
-        return t.getInt("taskId");
+        JsonObject t = makeRequest("createTask", request.build());
+        return t.get("taskId").getAsInt();
     }
 
     /**

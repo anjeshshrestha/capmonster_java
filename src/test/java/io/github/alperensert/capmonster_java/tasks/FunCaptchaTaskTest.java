@@ -1,14 +1,15 @@
 package io.github.alperensert.capmonster_java.tasks;
 
+import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.exceptions.CapmonsterException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 class FunCaptchaTaskTest extends BaseTaskTest {
-    private final FunCaptchaTask funCaptchaTask = new FunCaptchaTask(System.getenv("CAPMONSTER_API_KEY"));
+//    private final FunCaptchaTask funCaptchaTask = new FunCaptchaTask(System.getenv("CAPMONSTER_API_KEY"));
+    private final FunCaptchaTask funCaptchaTask = new FunCaptchaTask("6d52cf1e80b57c2b91221874f3d6c773");
 
     @Test
     void createTask() {
@@ -33,7 +34,7 @@ class FunCaptchaTaskTest extends BaseTaskTest {
 
     @AfterEach
     void afterEach() throws InterruptedException {
-        JSONObject task;
+        JsonObject task;
         try {
             task = funCaptchaTask.joinTaskResult(taskId);
         } catch (CapmonsterException e) {

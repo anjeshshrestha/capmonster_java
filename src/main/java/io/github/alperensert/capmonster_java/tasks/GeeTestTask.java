@@ -1,10 +1,10 @@
 package io.github.alperensert.capmonster_java.tasks;
 
+import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.utilities.Client;
 import io.github.alperensert.capmonster_java.utilities.Proxy;
 import io.github.alperensert.capmonster_java.utilities.RequestBuilder;
 import io.github.alperensert.capmonster_java.utilities.UserAgent;
-import org.json.JSONObject;
 
 /**
  * This class contains everything for GeeTest solving task
@@ -34,8 +34,8 @@ public class GeeTestTask extends Client {
                 .addTask("geetestGetLib", taskBuilder.getLib)
                 .addProxy(taskBuilder.proxy)
                 .addUserAgent(taskBuilder.userAgent);
-        JSONObject t = makeRequest("createTask", request.build());
-        return t.getInt("taskId");
+        JsonObject t = makeRequest("createTask", request.build());
+        return t.get("taskId").getAsInt();
     }
 
     public static class TaskBuilder {

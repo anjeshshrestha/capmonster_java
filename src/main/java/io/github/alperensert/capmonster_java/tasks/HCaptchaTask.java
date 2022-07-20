@@ -1,7 +1,7 @@
 package io.github.alperensert.capmonster_java.tasks;
 
+import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.utilities.*;
-import org.json.JSONObject;
 
 /**
  * This class contains everything for HCaptcha solving task
@@ -32,8 +32,8 @@ public class HCaptchaTask extends Client {
                 .addCookies(taskBuilder.cookies)
                 .addProxy(taskBuilder.proxy)
                 .addNoCache(taskBuilder.cache);
-        JSONObject t = makeRequest("createTask", request.build());
-        return t.getInt("taskId");
+        JsonObject t = makeRequest("createTask", request.build());
+        return t.get("taskId").getAsInt();
     }
 
     /**
