@@ -1,7 +1,7 @@
 package io.github.alperensert.capmonster_java.tasks;
 
-import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.utilities.*;
+import org.json.JSONObject;
 
 /**
  * This class contains everything for Google ReCaptcha2 solving task.
@@ -33,8 +33,8 @@ public class RecaptchaV2Task extends Client {
                 .addUserAgent(taskBuilder.userAgent)
                 .addTask("recaptchaDataSValue", taskBuilder.recaptchaSValue)
                 .addProxy(taskBuilder.proxy);
-        JsonObject t = makeRequest("createTask", request.build());
-        return t.get("taskId").getAsInt();
+        JSONObject t = makeRequest("createTask", request.build());
+        return t.getInt("taskId");
     }
 
     /**

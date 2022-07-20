@@ -1,15 +1,14 @@
 package io.github.alperensert.capmonster_java.tasks;
 
-import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.exceptions.CapmonsterException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 class RecaptchaV2TaskTest extends BaseTaskTest {
-//    private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task(System.getenv("CAPMONSTER_API_KEY"));
-private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task("6d52cf1e80b57c2b91221874f3d6c773");
+    private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task(System.getenv("CAPMONSTER_API_KEY"));
 
     @Test
     void createTask() {
@@ -36,7 +35,7 @@ private final RecaptchaV2Task recaptchaV2Task = new RecaptchaV2Task("6d52cf1e80b
 
     @AfterEach
     void afterEach() throws InterruptedException {
-        JsonObject task;
+        JSONObject task;
         try {
             task = recaptchaV2Task.joinTaskResult(taskId);
         } catch (CapmonsterException e) {

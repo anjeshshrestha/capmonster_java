@@ -1,7 +1,7 @@
 package io.github.alperensert.capmonster_java.tasks;
 
-import com.google.gson.JsonObject;
 import io.github.alperensert.capmonster_java.utilities.*;
+import org.json.JSONObject;
 
 /**
  * This class contains everything for FunCaptcha solving task
@@ -29,9 +29,8 @@ public class FunCaptchaTask extends Client {
                 .addUserAgent(taskBuilder.userAgent)
                 .addProxy(taskBuilder.proxy)
                 .addCookies(taskBuilder.cookies);
-
-        JsonObject t = makeRequest("createTask", request.build());
-        return t.get("taskId").getAsInt();
+        JSONObject t = makeRequest("createTask", request.build());
+        return t.getInt("taskId");
     }
 
     public static class TaskBuilder {

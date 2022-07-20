@@ -1,11 +1,8 @@
 package io.github.alperensert.capmonster_java.utilities;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import io.github.alperensert.capmonster_java.exceptions.CapmonsterException;
+import org.json.JSONObject;
 
-import java.util.Arrays;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -60,9 +57,9 @@ public abstract class Client {
      * @since 1.2
      */
     public String getBalance() {
-        JsonObject data = new JsonObject();
-        data.addProperty("clientKey", CLIENT_KEY);
-        return makeRequest("getBalance", data).get("balance").toString();
+        JSONObject data = new JSONObject();
+        data.put("clientKey", CLIENT_KEY);
+        return  makeRequest("getBalance", data).get("balance").toString();
     }
 
     /**
@@ -72,13 +69,13 @@ public abstract class Client {
      * @return Task's result if is ready
      * @since 1.2
      */
-    public JsonObject getTaskResult(int taskId) {
-        JsonObject data = new JsonObject();
-        data.addProperty("clientKey", CLIENT_KEY);
-        data.addProperty("taskId", taskId);
-        JsonObject result = makeRequest("getTaskResult", data);
+    public JSONObject getTaskResult(int taskId) {
+        JSONObject data = new JSONObject();
+        data.put("clientKey", CLIENT_KEY);
+        data.put("taskId", taskId);
+        JSONObject result = makeRequest("getTaskResult", data);
         boolean isReady = isReady(result);
-        return isReady ? (JsonObject) result.get("solution") : null;
+        return isReady ? (JSONObject) result.get("solution") : null;
     }
 
     /**
@@ -89,9 +86,9 @@ public abstract class Client {
      * @throws InterruptedException .
      * @since 1.2
      */
-    public JsonObject joinTaskResult(int taskId) throws InterruptedException {
+    public JSONObject joinTaskResult(int taskId) throws InterruptedException {
         for (int i = 0; i <= maximumTime + 1; i += 2) {
-            JsonObject result = getTaskResult(taskId);
+            JSONObject result = getTaskResult(taskId);
             if (result != null) return result;
             else TimeUnit.SECONDS.sleep(2);
         }
@@ -107,9 +104,9 @@ public abstract class Client {
      * @throws InterruptedException .
      * @since 1.2
      */
-    public JsonObject joinTaskResult(int taskId, int maximumTime) throws InterruptedException {
+    public JSONObject joinTaskResult(int taskId, int maximumTime) throws InterruptedException {
         for (int i = 0; i <= maximumTime + 1; i += 2) {
-            JsonObject result = getTaskResult(taskId);
+            JSONObject result = getTaskResult(taskId);
             if (result != null) return result;
             else TimeUnit.SECONDS.sleep(2);
         }
@@ -122,12 +119,12 @@ public abstract class Client {
      * @since 1.2
      */
     private static void checkResponse(String response) {
-        JsonObject responseJson = JsonParser.parseString(response).getAsJsonObject();
-        if (responseJson.get("errorId") != null && responseJson.get("errorId").getAsInt() == 0) {
+        JSONObject responseJson = new JSONObject(response);
+        if (responseJson.get("errorId") != null && (int)responseJson.get("errorId") == 0) {
             return;
         }
-        if (responseJson.get("errorId").getAsInt() != 0) {
-            throw new CapmonsterException(responseJson.get("errorCode").getAsString(), responseJson.get("errorDescription").getAsString());
+        if ((int) responseJson.get("errorId") != 0) {
+            throw new CapmonsterException((String) responseJson.get("errorCode"), (String) responseJson.get("errorDescription"));
         } else {
             throw new CapmonsterException("[ERROR CODE: HTTP_ERROR]", "Sometimes can be happen if capmonster servers there is too much intensity");
         }
@@ -139,7 +136,7 @@ public abstract class Client {
      * @return ready or not
      * @since 1.2
      */
-    private static boolean isReady(JsonObject response) {
+    private static boolean isReady(JSONObject response) {
         String status = response.get("status").toString();
 
         if (Objects.equals(status, "processing")) {
@@ -147,7 +144,7 @@ public abstract class Client {
         } else if (Objects.equals(status, "ready")) {
             return true;
         } else {
-            throw new CapmonsterException(response.get("errorCode").getAsString(), response.get("errorDescription").getAsString());
+            throw new CapmonsterException((String) response.get("errorCode"), (String) response.get("errorDescription"));
         }
     }
 
@@ -158,8 +155,8 @@ public abstract class Client {
      * @return Response from api
      * @since 1.2
      */
-    protected JsonObject makeRequest(String method, JsonObject data) {
-        JsonObject response = null;
+    protected JSONObject makeRequest(String method, JSONObject data) {
+        JSONObject response = null;
         if (Objects.equals(method, "getBalance")) {
             method = balanceUrl;
         } else if (Objects.equals(method, "getTaskResult")) {
@@ -186,7 +183,7 @@ public abstract class Client {
      * @throws IOException #
      * @since 1.2
      */
-    private static JsonObject requestHandler(String url, JsonObject data) throws IOException {
+    private static JSONObject requestHandler(String url, JSONObject data) throws IOException {
         URL parsedUrl = new URL(url);
         HttpsURLConnection connection = (HttpsURLConnection)parsedUrl.openConnection();
 
@@ -207,7 +204,7 @@ public abstract class Client {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            return JsonParser.parseString(response.toString()).getAsJsonObject();
+            return new JSONObject(response.toString());
         }
     }
 }
